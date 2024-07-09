@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Evaluation } from './../../evaluation/entities/evaluation.entity';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { CourseState } from "./course-state.entity";
 
 @Entity()
@@ -15,6 +16,9 @@ export class Course {
     @ManyToOne(() => CourseState, (state) => state.courses)
     @JoinColumn({referencedColumnName: 'id', name: 'state'})
     state: CourseState
+
+    @OneToMany(() => Evaluation, (evaluation) => evaluation.course)
+    evaluations: Evaluation[]
 
     @CreateDateColumn()
     createdday: Date

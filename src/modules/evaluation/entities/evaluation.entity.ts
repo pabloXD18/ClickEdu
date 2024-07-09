@@ -1,3 +1,4 @@
+import { Course } from "src/modules/course/entities/course.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
@@ -6,10 +7,11 @@ export class Evaluation {
     id: number
 
     @Column()
-    descriptio: string
+    description: string
 
-    // @OneToMany(() => ForumMessage, forumMessage => forumMessage.forum)
-    // messages: ForumMessage[]
+    @ManyToOne(() => Course, course => course.evaluations)
+    @JoinColumn()
+    course: Course
 
     @CreateDateColumn()
     createdday: Date

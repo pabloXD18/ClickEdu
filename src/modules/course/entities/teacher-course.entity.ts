@@ -1,19 +1,21 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Course } from "./course.entity";
-import { User } from "src/repository/user/user.entity";
+import { User } from "src/modules/user/entities/user.entity";
+import { Task } from "src/modules/task/entities/task.entity";
 
 @Entity()
 export class TeacherCourse {
     @PrimaryGeneratedColumn()
     id: number
 
+    @ManyToOne(() => User, (user) => user.teacherCourses)
+    @JoinColumn({referencedColumnName: 'id', name: 'teacher'})
+    teacher: User
+
     @ManyToOne(() => Course)
     @JoinColumn({referencedColumnName: 'id', name: 'course'})
     course: Course
 
-    @ManyToOne(() => User)
-    @JoinColumn({referencedColumnName: 'id', name: 'teacher'})
-    teacher: User
 
     @ManyToMany(() => User)
     @JoinTable({
@@ -31,6 +33,9 @@ export class TeacherCourse {
         }
     })
     students: User[]
+
+    @OneToMany (() => Task, (task) => task.filetasks)
+    tasks: Task[]
 
     @Column()
     hours: number

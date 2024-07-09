@@ -1,3 +1,4 @@
+import { TeacherCourse } from './../../course/entities/teacher-course.entity';
 import {
     Column,
     CreateDateColumn,
@@ -28,8 +29,8 @@ export class User {
   @Column({nullable: true})
   birthday: Date;
 
-  @OneToMany(() => ForumMessage, forumMessage => forumMessage.user)
-  forumMessages: ForumMessage[];
+  @OneToMany(() => TeacherCourse, (teacherCourse) => teacherCourse.teacher)
+  teacherCourses: TeacherCourse[];
 
   @ManyToOne(() => UserType, (usertype) => usertype.users)
   @JoinColumn({referencedColumnName: 'id', name: 'usertype'})
@@ -37,6 +38,7 @@ export class User {
 
   @CreateDateColumn()
   createdday: Date;
+
   @UpdateDateColumn()
   updatedday: Date;
 }

@@ -10,11 +10,11 @@ export class ForumMessage {
     @Column()
     message: string;
 
-    @ManyToOne(() => Forum, forum => forum.messages)
+    @ManyToOne(() => Forum)
     @JoinColumn()
     forum: Forum;
 
-    @ManyToOne(() => User, user => user.forumMessages)
+    @ManyToOne(() => User)
     @JoinColumn()
     user: User;
 

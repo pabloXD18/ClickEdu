@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { FileTask } from "./file-task.entity";
 
 
 @Entity()
@@ -11,6 +12,15 @@ export class File {
 
     @Column()
     lastname: string
+
+    @Column()
+    url: string
+
+    @Column()
+    extension: string
+
+    @OneToMany(() => FileTask, (filetask) => filetask.task)
+    file: File
 
     @CreateDateColumn()
     createdday: Date

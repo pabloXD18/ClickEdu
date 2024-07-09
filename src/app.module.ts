@@ -20,7 +20,7 @@ import { FileModule } from './modules/file/file.module';
       port: 3306,
       username: 'root',
       password: '',
-      database: 'clickinfo',
+      database: 'eduline',
       autoLoadEntities: true,
     }),
     ForumModule,

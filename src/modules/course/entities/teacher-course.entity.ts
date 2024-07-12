@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, Ma
 import { Course } from "./course.entity";
 import { User } from "src/modules/user/entities/user.entity";
 import { Task } from "src/modules/task/entities/task.entity";
+import { TeacherCourseStudent } from "./teacher-course-student.entity";
 
 @Entity()
 export class TeacherCourse {
@@ -34,7 +35,7 @@ export class TeacherCourse {
     })
     students: User[]
 
-    @OneToMany (() => Task, (task) => task.filetasks)
+    @OneToMany (() => Task, (task) => task.teacherCourse)
     tasks: Task[]
 
     @Column()

@@ -6,6 +6,8 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 import { CourseState } from './entities/course-state.entity';
 import { Course } from './entities/course.entity';
 import { TeacherCourse } from './entities/teacher-course.entity';
+import { Evaluation } from '../evaluation/entities/evaluation.entity';
+import { TeacherCourseStudent } from './entities/teacher-course-student.entity';
 
 @Injectable()
 export class CourseService {
@@ -17,6 +19,10 @@ export class CourseService {
     private courseStateRepository: Repository<CourseState>,
     @InjectRepository(TeacherCourse)
     private teacherCourseRepository: Repository<TeacherCourse>,
+    @InjectRepository(Evaluation)
+    private evaluationRepository: Repository<Evaluation>,
+    @InjectRepository(TeacherCourseStudent)
+    private teacherCourseStudentRepository: Repository<TeacherCourseStudent>,
   ) {}
 
   create(createCourseDto: CreateCourseDto) {

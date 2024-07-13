@@ -11,9 +11,13 @@ export class TaskStudent {
     @JoinColumn()
     file: File
 
-    @ManyToOne(() => Task, task => task.taskstudents)
-    @JoinColumn ()
-    task: Task
+    // es de ontomany, ya que una tarea de estudiante tendra muchos archivos
+    
+    // @ManyToOne(() => Task, task => task.taskstudents)
+    // @JoinColumn ()
+    // task: Task
+
+    
 
     @Column()
     grade: number

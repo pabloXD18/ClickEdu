@@ -1,7 +1,6 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { FileTask } from "./file-task.entity";
-import { TaskStudent } from "src/modules/task/entities/task-student.entity";
-
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { FileTask } from "./file-task.entity"
+import { TaskStudent } from "src/modules/task/entities/task-student.entity"
 
 @Entity()
 export class File {
@@ -20,11 +19,14 @@ export class File {
     @Column()
     extension: string
 
-    @OneToMany(() => FileTask, (filetask) => filetask.task)
-    file: File
+    @OneToMany(() => FileTask, (filetask) => filetask.file)
+    filetask: FileTask[]
 
     @OneToMany(() => TaskStudent, (taskstudent) => taskstudent.file)
-    taskstudents: TaskStudent[]
+    taskstudent: TaskStudent[]
+
+    @Column()
+    size: number
 
     @CreateDateColumn()
     createdday: Date

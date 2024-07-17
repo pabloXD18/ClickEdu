@@ -1,1 +1,4 @@
-export class CreateTaskDto {}
+import { OmitType } from "@nestjs/mapped-types";
+import { Task } from "../entities/task.entity";
+
+export class CreateTaskDto extends OmitType(Task, ['createdday' , 'updateday']) {}

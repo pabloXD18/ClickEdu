@@ -1,26 +1,50 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Task } from './entities/task.entity';
+import { TaskStudent } from './entities/task-student.entity';
+import { Repository } from 'typeorm';
+import { FileTask } from '../file/entities/file-task.entity';
 
 @Injectable()
-export class TaskService {
+export class TasksService {
+  constructor(
+    @InjectRepository(Task)
+    private taskRepository: Repository<Task> ,
+    @InjectRepository(TaskStudent)
+    private taskStudent: Repository<TaskStudent>,
+    @InjectRepository(FileTask)
+    private fileTaskRepository: Repository<FileTask>
+  ){}
+
   create(createTaskDto: CreateTaskDto) {
-    return 'This action adds a new task';
+    return this.taskRepository.save(createTaskDto)
   }
 
   findAll() {
-    return `This action returns all task`;
+    return this.taskRepository.find({
+      relations: ['teacherCourse']
+    })
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} task`;
+    return this.taskRepository.findOne({where: {id}});
   }
 
   update(id: number, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+    return this.taskRepository.update(id, updateTaskDto)
   }
 
   remove(id: number) {
-    return `This action removes a #${id} task`;
+    return this.taskRepository.delete(id);
   }
+
+  findTaskStudent(){    
+    return this.taskRepository.find({relations: ['taskStudents']})
+  }
+
+  findTaskFile(){
+    return this.fileTaskRepository.find({relations: ['task', 'file']})
+  }  
 }

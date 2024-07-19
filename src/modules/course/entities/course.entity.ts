@@ -1,12 +1,10 @@
 import { Evaluation } from './../../evaluation/entities/evaluation.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 import { CourseState } from "./course-state.entity";
+import { CommonEntity } from 'src/common/entity/common.entity';
 
 @Entity()
-export class Course {
-    @PrimaryGeneratedColumn()
-    id: number
-
+export class Course extends CommonEntity {
     @Column()
     name: string
 
@@ -19,10 +17,4 @@ export class Course {
 
     @OneToMany(() => Evaluation, (evaluation) => evaluation.course)
     evaluations: Evaluation[]
-
-    @CreateDateColumn()
-    createdday: Date
-
-    @UpdateDateColumn()
-    updateday: Date
 }

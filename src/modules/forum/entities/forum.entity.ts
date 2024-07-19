@@ -1,10 +1,9 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CommonEntity } from "src/common/entity/common.entity";
+import { Column, Entity, OneToMany } from "typeorm";
 import { ForumMessage } from "./forum-message.entity";
 
 @Entity()
-export class Forum {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Forum extends CommonEntity{
 
     @Column()
     name: string
@@ -16,10 +15,4 @@ export class Forum {
 
     @OneToMany(() => ForumMessage, forumMessage => forumMessage.forum)
     messages: ForumMessage[]
-
-    @CreateDateColumn()
-    createdday: Date
-
-    @UpdateDateColumn()
-    updatedday: Date | null
 }

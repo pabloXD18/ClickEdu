@@ -1,11 +1,10 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
-import { FileTask } from "./file-task.entity"
+import { CommonEntity } from "src/common/entity/common.entity"
 import { TaskStudent } from "src/modules/task/entities/task-student.entity"
+import { Column, Entity, OneToMany } from "typeorm"
+import { FileTask } from "./file-task.entity"
 
 @Entity()
-export class File {
-    @PrimaryGeneratedColumn()
-    id: number
+export class File extends CommonEntity {
 
     @Column()
     name: string
@@ -27,10 +26,4 @@ export class File {
 
     @Column()
     size: number
-
-    @CreateDateColumn()
-    createdday: Date
-
-    @UpdateDateColumn()
-    updateday: Date
 }

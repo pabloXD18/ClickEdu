@@ -1,12 +1,10 @@
-import { CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Entity, JoinColumn, ManyToOne} from "typeorm";
 import { TeacherCourse } from "./teacher-course.entity";
 import { User } from "src/modules/user/entities/user.entity";
+import { CommonEntity } from "src/common/entity/common.entity";
 
 @Entity()
-export class TeacherCourseStudent {
-    @PrimaryGeneratedColumn()
-    id: number
-
+export class TeacherCourseStudent extends CommonEntity {
     @ManyToOne (() => TeacherCourse)
     @JoinColumn ({
         name: 'teacherCourse'
@@ -18,10 +16,4 @@ export class TeacherCourseStudent {
         name: 'student'
     })
     student: User
-
-    @CreateDateColumn()
-    createdday: Date
-
-    @UpdateDateColumn()
-    updateday: Date
 }

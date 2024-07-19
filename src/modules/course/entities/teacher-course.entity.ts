@@ -1,12 +1,11 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany } from "typeorm";
 import { Course } from "./course.entity";
 import { User } from "src/modules/user/entities/user.entity";
 import { Task } from "src/modules/task/entities/task.entity";
+import { CommonEntity } from "src/common/entity/common.entity";
 
 @Entity()
-export class TeacherCourse {
-    @PrimaryGeneratedColumn()
-    id: number
+export class TeacherCourse extends CommonEntity {
 
     @ManyToOne(() => User, (user) => user.teacherCourses)
     @JoinColumn({referencedColumnName: 'id', name: 'teacher'})
@@ -42,10 +41,4 @@ export class TeacherCourse {
 
     @Column({nullable: true})
     day: string
-
-    @CreateDateColumn()
-    createdday: Date
-
-    @UpdateDateColumn()
-    updateday: Date
 }

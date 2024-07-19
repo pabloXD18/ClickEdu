@@ -1,11 +1,10 @@
+import { CommonEntity } from "src/common/entity/common.entity";
 import { File } from "src/modules/file/entities/file.entity";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { Task } from "./task.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class TaskStudent {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class TaskStudent extends CommonEntity{
 
     @ManyToOne (() => File, file => file.taskstudent)
     @JoinColumn()
@@ -19,10 +18,4 @@ export class TaskStudent {
 
     @Column()
     grade: number
-
-    @Column()
-    createdDay: Date
-
-    @Column()
-    updatedDay: Date
 }

@@ -1,31 +1,32 @@
-import { TeacherCourse } from './../../course/entities/teacher-course.entity';
+import { CommonEntity } from 'src/common/entity/common.entity';
 import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    JoinColumn,
-    ManyToOne,
-    OneToMany,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany
 } from 'typeorm';
+import { TeacherCourse } from './../../course/entities/teacher-course.entity';
 import { UserType } from './user-type.entity';
-import { ForumMessage } from 'src/modules/forum/entities/forum-message.entity';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class User extends CommonEntity {
+
   @Column()
   name: string;
+
   @Column()
   lastName: string;
+
   @Column()
   password: string;
+
   @Column({ unique: true })
   email: string;
+
   @Column({ nullable: true })
   address: string;
+
   @Column({nullable: true})
   birthday: Date;
 
@@ -35,10 +36,4 @@ export class User {
   @ManyToOne(() => UserType, (usertype) => usertype.users)
   @JoinColumn({referencedColumnName: 'id', name: 'usertype'})
   usertype: UserType;
-
-  @CreateDateColumn()
-  createdday: Date;
-
-  @UpdateDateColumn()
-  updatedday: Date;
 }

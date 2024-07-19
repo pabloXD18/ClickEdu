@@ -1,11 +1,6 @@
-import { Entity, PrimaryGeneratedColumn } from "typeorm";
+import { CommonEntity } from "src/common/entity/common.entity";
+import { Entity } from "typeorm";
 
 @Entity()
-export class FileTaskStudent {
-
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    
-    
+export class FileTaskStudent extends CommonEntity{
 }

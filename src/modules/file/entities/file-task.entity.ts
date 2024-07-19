@@ -1,10 +1,9 @@
+import { CommonEntity } from "src/common/entity/common.entity";
 import { Task } from "src/modules/task/entities/task.entity";
-import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Entity, JoinColumn, ManyToOne } from "typeorm";
 
 @Entity()
-export class FileTask {
-    @PrimaryGeneratedColumn()
-    id: number
+export class FileTask extends CommonEntity{
 
     @ManyToOne(() => Task)
     @JoinColumn({
@@ -19,10 +18,4 @@ export class FileTask {
         name: 'file'
     })
     file : File   
-    
-    @UpdateDateColumn()
-    updateday: Date
-
-    @CreateDateColumn()
-    createdday: Date
 }

@@ -1,17 +1,10 @@
 import { CommonEntity } from 'src/common/entity/common.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { TeacherCourse } from './../../course/entities/teacher-course.entity';
 import { UserType } from './user-type.entity';
 
 @Entity()
 export class User extends CommonEntity {
-
   @Column()
   name: string;
 
@@ -27,13 +20,13 @@ export class User extends CommonEntity {
   @Column({ nullable: true })
   address: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   birthday: Date;
 
   @OneToMany(() => TeacherCourse, (teacherCourse) => teacherCourse.teacher)
   teacherCourses: TeacherCourse[];
 
   @ManyToOne(() => UserType, (usertype) => usertype.users)
-  @JoinColumn({referencedColumnName: 'id', name: 'usertype'})
+  @JoinColumn({ referencedColumnName: 'id', name: 'usertype' })
   usertype: UserType;
 }

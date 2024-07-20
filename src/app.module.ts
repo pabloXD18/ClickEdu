@@ -8,11 +8,11 @@ import { ForumModule } from './modules/forum/forum.module';
 import { EvaluationModule } from './modules/evaluation/evaluation.module';
 import { TaskModule } from './modules/task/task.module';
 import { FileModule } from './modules/file/file.module';
-
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
-    UserModule, 
+    UserModule,
     CourseModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -27,7 +27,8 @@ import { FileModule } from './modules/file/file.module';
     ForumModule,
     EvaluationModule,
     TaskModule,
-    FileModule
+    FileModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -10,4 +10,3 @@ import { Evaluation } from './entities/evaluation.entity';
   providers: [EvaluationService],
 })
 export class EvaluationModule {}
-

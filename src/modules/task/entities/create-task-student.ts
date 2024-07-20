@@ -1,4 +1,4 @@
 export class createTaskStudent {
-    teacherCourseStudent: number;
-    task: number;
+  teacherCourseStudent: number;
+  task: number;
 }

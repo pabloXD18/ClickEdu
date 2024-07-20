@@ -10,4 +10,4 @@ import { ForumMessage } from './entities/forum-message.entity';
   controllers: [ForumController],
   providers: [ForumService],
 })
-export class ForumModule {}   
+export class ForumModule {}

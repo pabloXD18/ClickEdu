@@ -12,32 +12,32 @@ export class FileService {
     @InjectRepository(File)
     private fileRepository: Repository<File>,
     @InjectRepository(FileTask)
-    private fileTask: Repository<FileTask>
-  ){}
+    private fileTask: Repository<FileTask>,
+  ) {}
 
   create(CreateFileDto: CreateFileDto) {
-    return this.fileRepository.save(CreateFileDto)
+    return this.fileRepository.save(CreateFileDto);
   }
 
   findAll() {
     return this.fileRepository.find({
-      relations: ['file']
-    })
+      relations: ['file'],
+    });
   }
 
   update(id: number, updateTaskDto: UpdateFileDto) {
-    return this.fileRepository.update(id, updateTaskDto)
+    return this.fileRepository.update(id, updateTaskDto);
   }
 
   remove(id: number) {
     return this.fileRepository.delete(id);
   }
 
-  findTaskStudent(){    
-    return this.fileRepository.find({relations: ['taskStudents']})
+  findTaskStudent() {
+    return this.fileRepository.find({ relations: ['taskStudents'] });
   }
 
-  findTaskFile(){
-    return this.fileRepository.find({relations: ['task', 'file']})
-  }  
+  findTaskFile() {
+    return this.fileRepository.find({ relations: ['task', 'file'] });
+  }
 }

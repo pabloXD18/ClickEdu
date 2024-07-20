@@ -11,7 +11,6 @@ import { TeacherCourseStudent } from './entities/teacher-course-student.entity';
 
 @Injectable()
 export class CourseService {
-
   constructor(
     @InjectRepository(Course)
     private courseRepository: Repository<Course>,
@@ -30,11 +29,11 @@ export class CourseService {
   }
 
   findAll() {
-    return this.courseRepository.find({relations: ['state']});
+    return this.courseRepository.find({ relations: ['state'] });
   }
 
   findOne(id: number) {
-    return this.courseRepository.findOne({where: {id}})
+    return this.courseRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateCourseDto: UpdateCourseDto) {
@@ -46,10 +45,12 @@ export class CourseService {
   }
 
   findStates() {
-    return this.courseStateRepository.find({relations: ['courses']});
+    return this.courseStateRepository.find({ relations: ['courses'] });
   }
 
   findTeacherCourses() {
-    return this.teacherCourseRepository.find({relations: ['course', 'teacher', 'students']});
+    return this.teacherCourseRepository.find({
+      relations: ['course', 'teacher', 'students'],
+    });
   }
 }

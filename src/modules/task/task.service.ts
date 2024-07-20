@@ -11,40 +11,40 @@ import { FileTask } from '../file/entities/file-task.entity';
 export class TasksService {
   constructor(
     @InjectRepository(Task)
-    private taskRepository: Repository<Task> ,
+    private taskRepository: Repository<Task>,
     @InjectRepository(TaskStudent)
     private taskStudent: Repository<TaskStudent>,
     @InjectRepository(FileTask)
-    private fileTaskRepository: Repository<FileTask>
-  ){}
+    private fileTaskRepository: Repository<FileTask>,
+  ) {}
 
   create(createTaskDto: CreateTaskDto) {
-    return this.taskRepository.save(createTaskDto)
+    return this.taskRepository.save(createTaskDto);
   }
 
   findAll() {
     return this.taskRepository.find({
-      relations: ['teacherCourse']
-    })
+      relations: ['teacherCourse'],
+    });
   }
 
   findOne(id: number) {
-    return this.taskRepository.findOne({where: {id}});
+    return this.taskRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateTaskDto: UpdateTaskDto) {
-    return this.taskRepository.update(id, updateTaskDto)
+    return this.taskRepository.update(id, updateTaskDto);
   }
 
   remove(id: number) {
     return this.taskRepository.delete(id);
   }
 
-  findTaskStudent(){    
-    return this.taskRepository.find({relations: ['taskStudents']})
+  findTaskStudent() {
+    return this.taskRepository.find({ relations: ['taskStudents'] });
   }
 
-  findTaskFile(){
-    return this.fileTaskRepository.find({relations: ['task', 'file']})
-  }  
+  findTaskFile() {
+    return this.fileTaskRepository.find({ relations: ['task', 'file'] });
+  }
 }

@@ -8,7 +8,6 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
-
   constructor(
     @InjectRepository(UserType)
     private userTypeRepository: Repository<UserType>,
@@ -28,7 +27,7 @@ export class UserService {
   }
 
   findOne(id: number) {
-    return this.userRepository.findOne({where: {id}})
+    return this.userRepository.findOne({ where: { id } });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

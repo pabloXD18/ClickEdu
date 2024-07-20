@@ -6,7 +6,6 @@ import { TaskStudent } from './entities/task-student.entity';
 import { FileTask } from '../file/entities/file-task.entity';
 import { TasksService } from './task.service';
 
-
 @Module({
   imports: [TypeOrmModule.forFeature([Task, TaskStudent, FileTask, File])],
   controllers: [TaskController],

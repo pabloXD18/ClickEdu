@@ -11,10 +11,10 @@ export class FileTask extends CommonEntity {
   })
   task: Task;
 
-  @ManyToOne(() => File)
-  @JoinColumn({
-    referencedColumnName: 'id',
-    name: 'file',
-  })
-  file: File;
+  // @ManyToOne(() => File)
+  // @JoinColumn({
+  //   referencedColumnName: 'id',
+  //   name: 'file',
+  // })
+  // file: File;
 }

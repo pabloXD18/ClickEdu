@@ -9,7 +9,7 @@ export class CommonEntity {
   id: number;
 
   @CreateDateColumn()
-  createddate: Date;
+  createdday: Date;
 
   @UpdateDateColumn()
   updatedday: Date;

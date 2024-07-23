@@ -1,7 +1,6 @@
 import { CommonEntity } from 'src/common/entity/common.entity';
 import { TaskStudent } from 'src/modules/task/entities/task-student.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { FileTask } from './file-task.entity';
 
 @Entity()
 export class File extends CommonEntity {
@@ -17,8 +16,8 @@ export class File extends CommonEntity {
   @Column()
   extension: string;
 
-  @OneToMany(() => FileTask, (filetask) => filetask.file)
-  filetask: FileTask[];
+  // @OneToMany(() => FileTask, (filetask) => filetask.file)
+  // filetask: FileTask[];
 
   @OneToMany(() => TaskStudent, (taskstudent) => taskstudent.file)
   taskstudent: TaskStudent[];

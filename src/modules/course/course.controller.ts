@@ -6,10 +6,14 @@ import {
   Param,
   Patch,
   Post,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthTokenPayload } from '../auth/dto/login.dto';
 
 @Controller('course')
 export class CourseController {
@@ -21,8 +25,16 @@ export class CourseController {
   }
 
   @Get('getAll')
+  @UseGuards(AuthGuard)
   findAll() {
     return this.courseService.findAll();
+  }
+
+  @Get('getMyCourses')
+  @UseGuards(AuthGuard)
+  getMyCourses(@Request() request: Request) {
+    const payload = request['payload'] as AuthTokenPayload;
+    return this.courseService.findAll({ id: payload.id });
   }
 
   @Get('states')

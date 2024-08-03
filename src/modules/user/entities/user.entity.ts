@@ -18,10 +18,10 @@ export class User extends CommonEntity {
   email: string;
 
   @Column({ nullable: true })
-  address: string;
+  address: string | null;
 
   @Column({ nullable: true })
-  birthday: Date;
+  birthday: Date | null;
 
   @OneToMany(() => TeacherCourse, (teacherCourse) => teacherCourse.teacher)
   teacherCourses: TeacherCourse[];

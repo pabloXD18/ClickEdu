@@ -17,9 +17,6 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('email is wrong');
     }
-    if (password != user.password) {
-      throw new UnauthorizedException('password is wrong');
-    }
 
     const payload = {
       email: user.email,
@@ -29,7 +26,7 @@ export class AuthService {
     const token = await this.jwtService.signAsync(payload);
 
     const passwordAutorize = await bcrypt.compare(password, user.password);
-    if (passwordAutorize) {
+    if (!passwordAutorize) {
       throw new UnauthorizedException('incorrecto');
     }
 
@@ -38,7 +35,10 @@ export class AuthService {
 
   async register(createUser: CreateUserDto) {
     const hashPassword = await bcrypt.hash(createUser.password, 10);
+    const decryptPassword = createUser.password;
     createUser = { ...createUser, password: hashPassword };
-    return this.userService.create(createUser);
+    return this.userService.create(createUser).then(() => {
+      //return this.login({ })
+    });
   }
 }

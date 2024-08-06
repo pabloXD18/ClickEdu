@@ -7,6 +7,9 @@ import { TaskStudent } from './entities/task-student.entity';
 import { Repository } from 'typeorm';
 import { FileTask } from '../file/entities/file-task.entity';
 
+/**
+ *
+ */
 @Injectable()
 export class TasksService {
   constructor(
@@ -18,32 +21,58 @@ export class TasksService {
     private fileTaskRepository: Repository<FileTask>,
   ) {}
 
+  /**
+   *
+   * @param createTaskDto
+   */
   create(createTaskDto: CreateTaskDto) {
     return this.taskRepository.save(createTaskDto);
   }
 
+  /**
+   *
+   */
   findAll() {
     return this.taskRepository.find({
       relations: ['teacherCourse'],
     });
   }
 
+  /**
+   *
+   * @param id
+   */
   findOne(id: number) {
     return this.taskRepository.findOne({ where: { id } });
   }
 
+  /**
+   *
+   * @param id
+   * @param updateTaskDto
+   */
   update(id: number, updateTaskDto: UpdateTaskDto) {
     return this.taskRepository.update(id, updateTaskDto);
   }
 
+  /**
+   *
+   * @param id
+   */
   remove(id: number) {
     return this.taskRepository.delete(id);
   }
 
+  /**
+   *
+   */
   findTaskStudent() {
     return this.taskRepository.find({ relations: ['taskStudents'] });
   }
 
+  /**
+   *
+   */
   findTaskFile() {
     return this.fileTaskRepository.find({ relations: ['task', 'file'] });
   }

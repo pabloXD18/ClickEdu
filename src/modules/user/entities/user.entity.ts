@@ -3,6 +3,9 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { TeacherCourse } from './../../course/entities/teacher-course.entity';
 import { UserType } from './user-type.entity';
 
+/**
+ *
+ */
 @Entity()
 export class User extends CommonEntity {
   @Column()

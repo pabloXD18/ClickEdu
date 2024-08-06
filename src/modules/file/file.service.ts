@@ -6,6 +6,9 @@ import { File } from 'buffer';
 import { Repository } from 'typeorm';
 import { FileTask } from './entities/file-task.entity';
 
+/**
+ *
+ */
 @Injectable()
 export class FileService {
   constructor(
@@ -15,28 +18,50 @@ export class FileService {
     private fileTask: Repository<FileTask>,
   ) {}
 
+  /**
+   *
+   * @param CreateFileDto
+   */
   create(CreateFileDto: CreateFileDto) {
     return this.fileRepository.save(CreateFileDto);
   }
 
+  /**
+   *
+   */
   findAll() {
     return this.fileRepository.find({
       relations: ['file'],
     });
   }
 
+  /**
+   *
+   * @param id
+   * @param updateTaskDto
+   */
   update(id: number, updateTaskDto: UpdateFileDto) {
     return this.fileRepository.update(id, updateTaskDto);
   }
 
+  /**
+   *
+   * @param id
+   */
   remove(id: number) {
     return this.fileRepository.delete(id);
   }
 
+  /**
+   *
+   */
   findTaskStudent() {
     return this.fileRepository.find({ relations: ['taskStudents'] });
   }
 
+  /**
+   *
+   */
   findTaskFile() {
     return this.fileRepository.find({ relations: ['task', 'file'] });
   }

@@ -2,6 +2,9 @@ import { CommonEntity } from 'src/common/entity/common.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { ForumMessage } from './forum-message.entity';
 
+/**
+ *
+ */
 @Entity()
 export class Forum extends CommonEntity {
   @Column()

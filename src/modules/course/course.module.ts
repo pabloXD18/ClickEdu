@@ -8,6 +8,9 @@ import { TeacherCourse } from './entities/teacher-course.entity';
 import { Evaluation } from '../evaluation/entities/evaluation.entity';
 import { TeacherCourseStudent } from './entities/teacher-course-student.entity';
 
+/**
+ *
+ */
 @Module({
   imports: [
     TypeOrmModule.forFeature([

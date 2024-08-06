@@ -3,6 +3,9 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { CourseState } from './course-state.entity';
 import { CommonEntity } from 'src/common/entity/common.entity';
 
+/**
+ *
+ */
 @Entity()
 export class Course extends CommonEntity {
   @Column()

@@ -12,6 +12,9 @@ import { User } from 'src/modules/user/entities/user.entity';
 import { Task } from 'src/modules/task/entities/task.entity';
 import { CommonEntity } from 'src/common/entity/common.entity';
 
+/**
+ *
+ */
 @Entity()
 export class TeacherCourse extends CommonEntity {
   @ManyToOne(() => User, (user) => user.teacherCourses)

@@ -5,6 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { File } from './entities/file.entity';
 import { FileTask } from './entities/file-task.entity';
 
+/**
+ *
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([File, FileTask])],
   controllers: [FileController],

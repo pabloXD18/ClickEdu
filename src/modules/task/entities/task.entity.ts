@@ -4,6 +4,9 @@ import { FileTask } from 'src/modules/file/entities/file-task.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { TaskStudent } from './task-student.entity';
 
+/**
+ *
+ */
 @Entity()
 export class Task extends CommonEntity {
   @Column()

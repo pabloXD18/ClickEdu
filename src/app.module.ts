@@ -10,6 +10,9 @@ import { ForumModule } from './modules/forum/forum.module';
 import { TaskModule } from './modules/task/task.module';
 import { UserModule } from './modules/user/user.module';
 
+/**
+ *
+ */
 @Module({
   imports: [
     UserModule,

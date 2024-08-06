@@ -1,3 +1,5 @@
+const { isFunctionDeclaration } = require('typescript');
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -9,6 +11,7 @@ module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:jsdoc/recommended',
   ],
   root: true,
   env: {
@@ -23,6 +26,19 @@ module.exports = {
     'dist/**/*',
   ],
   rules: {
+    'jsdoc/require-jsdoc': [
+      'error',
+      {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: true,
+          ClassDeclaration: true,
+          FunctionExpression: true,
+          ArrowFunctionExpression: false,
+        },
+        checkConstructors: false,
+      },
+    ],
     'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
     '@typescript-eslint/no-empty-interface': [
       'error',

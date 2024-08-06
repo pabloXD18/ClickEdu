@@ -5,6 +5,9 @@ import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtSecret } from 'src/common/constans/jwt-secret';
 
+/**
+ *
+ */
 @Module({
   imports: [
     UserModule,

@@ -3,6 +3,9 @@ import { File } from 'src/modules/file/entities/file.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { Task } from './task.entity';
 
+/**
+ *
+ */
 @Entity()
 export class TaskStudent extends CommonEntity {
   @ManyToOne(() => File, (file) => file.taskstudent)

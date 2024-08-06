@@ -2,6 +2,9 @@ import { CommonEntity } from 'src/common/entity/common.entity';
 import { TaskStudent } from 'src/modules/task/entities/task-student.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 
+/**
+ *
+ */
 @Entity()
 export class File extends CommonEntity {
   @Column()

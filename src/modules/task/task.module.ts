@@ -7,6 +7,9 @@ import { FileTask } from '../file/entities/file-task.entity';
 import { TasksService } from './task.service';
 import { File } from '../file/entities/file.entity';
 
+/**
+ *
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([Task, TaskStudent, FileTask, File])],
   controllers: [TaskController],

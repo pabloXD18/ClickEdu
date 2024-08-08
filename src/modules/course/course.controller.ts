@@ -9,11 +9,12 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthTokenPayload } from '../auth/dto/login.dto';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import { AuthGuard } from 'src/guards/auth.guard';
-import { AuthTokenPayload } from '../auth/dto/login.dto';
+import { Course } from './entities/course.entity';
 
 /**
  *
@@ -23,36 +24,40 @@ export class CourseController {
   constructor(private readonly courseService: CourseService) {}
 
   /**
-   *
-   * @param createCourseDto
+   * Creacion de un nuevo curso
+   * @param { CreateCourseDto } createCourseDto Datos requeridos para la creacion del curso.
+   * @returns { Promise<CreateCourseDto & Course> } Retorna los datos del curso creado.
    */
   @Post()
-  create(@Body() createCourseDto: CreateCourseDto) {
+  create(
+    @Body() createCourseDto: CreateCourseDto,
+  ): Promise<CreateCourseDto & Course> {
     return this.courseService.create(createCourseDto);
   }
 
   /**
-   *
+   * @returns { Promise<Course[]> } Retorna todos los cvursos creados.
    */
   @Get('getAll')
   @UseGuards(AuthGuard)
-  findAll() {
+  findAll(): Promise<Course[]> {
     return this.courseService.findAll();
   }
 
   /**
-   *
-   * @param request
+   * Metodo para obtener un curso.
+   * @param { Request } request S
+   * @returns { Promise<Course[]> } Retorna el curso buscado.
    */
   @Get('getMyCourses')
   @UseGuards(AuthGuard)
-  getMyCourses(@Request() request: Request) {
+  getMyCourses(@Request() request: Request): Promise<Course[]> {
     const payload = request['payload'] as AuthTokenPayload;
     return this.courseService.findAll({ id: payload.id });
   }
 
   /**
-   *
+   * @returns { Promise<CourseState[]> }
    */
   @Get('states')
   findStates() {

@@ -10,11 +10,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { DeleteResult, UpdateResult } from 'typeorm';
 import { AuthTokenPayload } from '../auth/dto/login.dto';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { CourseState } from './entities/course-state.entity';
 import { Course } from './entities/course.entity';
+import { TeacherCourse } from './entities/teacher-course.entity';
 
 /**
  *
@@ -57,24 +60,25 @@ export class CourseController {
   }
 
   /**
-   * @returns { Promise<CourseState[]> }
+   * @returns { Promise<CourseState[]> } retorna estado del curso
    */
   @Get('states')
-  findStates() {
+  findStates(): Promise<CourseState[]> {
     return this.courseService.findStates();
   }
 
   /**
-   *
+   * @returns { Promise<TeacherCourse[]> } Retorna el curso al que hace parte el profesor.
    */
   @Get('teacherCourses')
-  findTeacherCourses() {
+  findTeacherCourses(): Promise<TeacherCourse[]> {
     return this.courseService.findTeacherCourses();
   }
 
   /**
-   *
-   * @param id
+   * Buscar usuario por id
+   * @param { string } id Id del usuario.
+   * @returns { Promise<Course> } retorna curso buscado por id del usuario.
    */
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -82,21 +86,26 @@ export class CourseController {
   }
 
   /**
-   *
-   * @param id
-   * @param updateCourseDto
+   * Metodo para actulizar curso
+   * @param { string } id id del curso.
+   * @param { UpdateCourseDto } updateCourseDto Datos de actulizacion del curso.
+   * @returns { Promise<UpdateResult> } Retorna lo actulizado.
    */
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCourseDto: UpdateCourseDto,
+  ): Promise<UpdateResult> {
     return this.courseService.update(+id, updateCourseDto);
   }
 
   /**
-   *
-   * @param id
+   * Metodo para eliminar un curso
+   * @param { string } id Id del curso a eliminar.
+   * @returns { Promise<DeleteResult> } Restorna curso borrado satisfactoriamente.
    */
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string): Promise<DeleteResult> {
     return this.courseService.remove(+id);
   }
 }
